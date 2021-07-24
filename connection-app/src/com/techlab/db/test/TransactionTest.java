@@ -57,8 +57,13 @@ public class TransactionTest {
 		
 		con.setAutoCommit(false);
 	    try (Statement stmt1 = (Statement) con.createStatement()) {
-	    	stmt.executeUpdate("UPDATE CUSTOMER SET BAL=(BAL-"+amt+") WHERE ID="+cid+";");
-			stmt.executeUpdate("UPDATE MERCHANT SET BAL=(BAL+"+amt+") WHERE ID="+mid+";");
+	    	int u1=stmt.executeUpdate("UPDATE CUSTOMER SET BAL=(BAL-"+amt+") WHERE ID="+cid+";");
+	    	int u2=stmt.executeUpdate("UPDATE MERCHANT SET BAL=(BAL+"+amt+") WHERE ID="+mid+";");
+			if((u1==0) || (u2==0))
+			{
+				con.rollback();
+				throw new SQLException("Transaction not done");
+			}
 	        con.commit();
 	        stmt1.close();
 	        System.out.println("Transaction done successfully");
