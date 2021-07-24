@@ -1,7 +1,6 @@
 package com.techlab.db.test;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,26 +22,25 @@ public class StatementTest {
 
 		System.out.println();
 		System.out.println("After inserting emp abc row :");
-		stmt.executeUpdate("INSERT INTO EMP1 VALUES (1001,'abc','Developer',NULL,'1-AUG-21',4500,NULL,10);");
-		updated++;
+		updated+=stmt.executeUpdate("INSERT INTO EMP1 VALUES (1001,'abc','Developer',NULL,'1-AUG-21',4500,NULL,10);");
+		//updated++;
 		showTable(con);
 		System.out.println();
 
 		System.out.println("After updating manager id of emp abc to 7839 :");
-		stmt.executeUpdate("UPDATE EMP1 SET MGR=7839 WHERE EMPNO=1001;");
-		updated++;
+		updated+=stmt.executeUpdate("UPDATE EMP1 SET MGR=7839 WHERE EMPNO=1001;");
+		//updated++;
 		showTable(con);
 		System.out.println();	
 
 		System.out.println("After deleting record of empno 1001  :");
-		stmt.executeUpdate("DELETE FROM EMP1 WHERE EMPNO=1001;");
-		deleted++;
+		deleted+=stmt.executeUpdate("DELETE FROM EMP1 WHERE EMPNO=1001;");
+		//deleted++;
 		showTable(con);
 		System.out.println();	
 
 		System.out.println("No of updations : "+updated);
 		System.out.print(" No of deletions : "+deleted);
-
 
 		stmt.close();
 		if(!con.isClosed())

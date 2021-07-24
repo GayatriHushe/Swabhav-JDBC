@@ -15,15 +15,6 @@ public class TransactionTest {
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/transaction?"+"user=root&password=root");
 
-
-		//		System.out.println("With transaction \n");
-		//		System.out.println("After customer with id MN spending 200 rupees :");
-		//
-				
-
-
-
-
 		Scanner sc=new Scanner(System.in);
 
 		System.out.println("Enter purchase amount : ");
@@ -34,6 +25,8 @@ public class TransactionTest {
 
 		System.out.println("Enter merchant id : ");
 		int mid=sc.nextInt();
+		
+		sc.close();
 
 		Statement stmt = (Statement) con.createStatement();
 
